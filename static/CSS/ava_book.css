@@ -1,0 +1,332 @@
+/* Reset styles */
+
+/* Body styles */
+body {
+    background-image: url('/static/background2.jpg'); /* Adjust the path to your image */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff; /* White background */
+    color: #333; /* Dark text color */
+    position: relative;
+  }
+  
+  /* Header styles */
+  header {
+    /* background-color: #0b042e; */
+    padding: 20px;
+    text-align: center;
+    height: 100px;
+  }
+  header p{
+    color: #fff; /* White text color */
+    text-decoration: none;
+    padding: 4px 8px; /* Adjust padding */
+    font-size: 14px; /* Smaller font size */
+    position: absolute;
+    top: 9px; /* Adjust distance from top */
+     /* Adjust distance from right */
+  }
+  
+  .button {
+    background-color: #fff; /* Button background color */
+    color: navy; /* Button text color */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Navigation styles */
+  nav {
+    color: #fff;
+    text-decoration: none;
+
+    margin-top: 40px;
+  }
+  
+  nav a {
+    color: #fff; /* White text color for links */
+    text-decoration: none;
+    margin: 0 40px;
+    font-size: larger;
+    position: relative;
+  }
+  
+  nav a::after {
+    content: ''; /* Add content for the pseudo-element */
+    position: absolute; /* Position the pseudo-element absolutely */
+    left: 0;
+    bottom: -5px; /* Adjust as needed for the underline position */
+    width: 0; /* Make the line span the width of the anchor tag */
+    height: 2px; /* Set the height of the line */
+    background-color: transparent; /* Initially make the line transparent */
+    transition: width 0.5s ease-out; /* Smooth transition for the line */
+  }
+  
+  nav a:hover::after {
+    background-color: #03fcd3; /* Change the background color on hover */
+    width: 100%; /* Ensure the line spans the full width */
+  }
+  
+  /* Login and Sign Up button styles */
+  .login-button {
+    color: #fff; /* White text color */
+    text-decoration: none;
+    padding: 4px 8px; /* Adjust padding */
+    font-size: 14px; /* Smaller font size */
+    border-radius: 20px; /* Round edges for buttons */
+    background-color: #ff6600; /* Orange button color */
+    transition: background-color 0.3s; /* Smooth transition for color change */
+    position: absolute;
+    top: 20px; /* Adjust distance from top */
+    right: 20px; /* Adjust distance from right */
+  }
+  
+  .signup-button {
+    color: #fff; /* White text color */
+    text-decoration: none;
+    padding: 4px 8px; /* Adjust padding */
+    font-size: 14px; /* Smaller font size */
+    border-radius: 20px; /* Round edges for buttons */
+    background-color: #ff6600; /* Orange button color */
+    transition: background-color 0.3s; /* Smooth transition for color change */
+    position: absolute;
+    top: 20px; /* Adjust distance from top */
+    right: 80px; /* Adjust distance from right */
+  }
+  .logout-button {
+    color: #fff; /* White text color */
+    text-decoration: none;
+    padding: 4px 8px; /* Adjust padding */
+    font-size: 14px; /* Smaller font size */
+    border-radius: 20px; /* Round edges for buttons */
+    background-color: #ff6600; /* Orange button color */
+    transition: background-color 0.3s; /* Smooth transition for color change */
+    position: absolute;
+    top: 20px; /* Adjust distance from top */
+    right: 20px; /* Adjust distance from right */
+  }
+  
+  .login-button:hover,
+  .signup-button:hover,
+  .logout-button:hover {
+    background-color: #e65c00; /* Darker orange on hover */
+  }
+  
+  .login-button:active,
+  .signup-button:active,
+  .logout-button:active {
+    background-color: #cc5200; /* Even darker orange on click */
+  }
+  .siteName{
+    position: relative;
+    left: 11px;
+    top: -35px;
+    font-size: 22px;
+    margin: -3px;
+  }
+  /* Main content styles */
+  main {
+    padding: 20px;
+    margin-bottom: 20;
+    margin-top: 20;
+  }
+  
+  .book-slide {
+    display: flex;
+    flex-wrap: wrap; /* Ensure slides wrap to next line if space is insufficient */
+    justify-content: center; /* Center align each slide */
+    margin-bottom: 20px; /* Separate each slide */
+    margin-top: 50px;
+  }
+  
+  .book-slide h2 {
+    width: 100%; /* Take up full width */
+    text-align: center; /* Center align */
+    margin-bottom: 20px; /* Add space below */
+    color: #003366; /* Navy blue heading color */
+  }
+  .book-slide p{
+    width: 100%; /* Take up full width */
+    text-align: center; /* Center align */
+    margin-bottom: 20px; /* Add space below */
+    color: #003366; /* Navy blue heading color */
+    
+  }
+
+  .emptylib{
+    font-size: 66px;
+  }
+  main {
+    padding: 20px;
+    margin-bottom: 20;
+    margin-top: 20;
+  }
+  
+  /* Search icon styles */
+  .search-icon {
+    margin-top: 20px;
+    margin-left: 0;
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+  }
+  
+  .search-icon i {
+    cursor: pointer;
+  }
+  
+  /* Search bar styles */
+  /* Search bar styles */
+  .search {
+    display: none; /* Initially hide search bar */
+    margin-top: 20px;
+    margin-left: 0; /* Remove left margin */
+    display: flex; /* Make it a flex container */
+    align-items: center; /* Align items vertically */
+  }
+  
+  .search input[type="text"] {
+    width: 200px;
+    height: 25px;
+    padding: 8px;
+    font-size: 16px;
+    margin-right: 10px; /* Add right margin */
+    border-radius: 20px; /* Round the search input */
+  }
+  
+  .search button {
+    padding: 2px 10px;
+    background-color: #000cea;
+    height: 28px;
+    width: 70px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 20px; /* Round the search button */
+  }
+  
+  .search button:hover {
+    background-color: #00044a;
+  }
+  
+  /* Filter styles */
+  /* Filter styles */
+
+  
+  
+  /* Book styles */
+  .books {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 20px; /* Adjust margin as needed */
+    width: auto;
+    height: auto;
+    margin-right: 5px;
+    padding: 20px;
+    background-color: transparent;
+  }
+  .ava{
+    margin-left: 540px;
+    font-size: 40px;
+    color: orangered;
+}
+  .book {
+    display: inline-grid; /* Change to inline-block to fit the content */
+    overflow: hidden; /* Hide overflowing content */
+    border-radius: 5px;
+    width: 200px;
+    height: auto;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  
+    transition: transform 0.8s; /* Add transition effect */
+  }
+  
+  .book img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    transition: transform 0.9s; /* Add transition effect */
+  }
+  
+  .book-details {
+    padding: 20px;
+    background-color: transparent;
+    transform: translateY(100%); /* Move content off-screen initially */
+    transition: transform 0.5s; /* Add transition effect */
+  }
+  .availability {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #2ecc71; /* Green background for available books */
+    color: white;
+    border-radius: 3px;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  .not-availability{
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #ff0000; /* Green background for available books */
+    color: white;
+    border-radius: 3px;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  /* Reveal additional content on hover */
+  .book:hover .book-details {
+    transform: translateY(0); /* Move content into view on hover */
+  }
+  .book:hover {
+    transform: scale(1.1);
+  }
+  
+  .book h3 {
+    margin-top: 10px;
+  }
+  .book h2{
+    color: #fff9dc;
+  }
+  .book p {
+    /* margin-bottom: 5px; */
+    color: rgb(255, 255, 255);
+    font-size: 25px;
+  }
+  
+  .book-link {
+    text-decoration: none;
+    color: inherit;
+  }
+.add-book {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 50px; /* Round border radius */
+    background-color: #4CAF50; /* Green background color */
+    color: white; /* White text color */
+    text-decoration: none; /* Remove underline */
+    position: relative; /* Enable positioning */
+    top: -30px; /* Move the button up */
+    left: -130px; /* Move the button to the left */
+}
+  
+.add-book:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+  footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: transparent;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+  }

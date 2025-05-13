@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Information</title>
+  <link rel="stylesheet" href="{% static '/CSS/book_info.css' %}">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+<header>
+    {% if messages %}
+    {% for message in messages %}
+
+        <div class="alert" role="alert">
+        {{ message }}
+
+        </div>
+
+    {% endfor %}
+{% endif %}
+    <nav class="admin">
+      <p class = "siteName">ReadRover Depot</p>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'Browes' %}">Browes</a>
+
+        {% if user.is_authenticated %}
+          {%if user.is_superuser%}
+            <a href="{% url 'profile' %}">My Account</a>
+            <a href="{% url 'ava_book' %}">Available Books</a>
+            <a href="{% url 'Add_Book' %}">Add Book</a>
+          {%else%}
+            <a href="{% url 'mylib' %}">My Library</a>
+            <a href="{% url 'profile' %}">My Account</a>
+          {%endif%}
+        {%endif%}
+        
+        
+
+    </nav>
+    {% if user.is_authenticated %}
+        <a href = "{% url 'profile'%}"><p> Hi {{user.username}}</p></a>
+        <a class="logout-button" href="{% url 'logout' %}">
+            Log out <i class="fas fa-sign-out-alt"></i>
+        </a>
+    {% else %}
+        <a class="login-button" href="{% url 'login' %}">
+            Log in <i class="fas fa-sign-in-alt"></i>
+        </a>
+        <a class="signup-button" href="{% url 'register' %}">
+            Sign up <i class="fas fa-user-plus"></i>
+        </a>
+    {% endif %}
+</header>
+<div class="reviews">
+    <h3>Reviews</h3>
+    {% for review in reviews %}
+      <div class="review">
+        <p><strong>{{ review.user.username }}</strong> ({{ review.created_at|date:"M d, Y" }})</p>
+        <p>Rating: {{ review.rating }}/5</p>
+        <p>{{ review.comment }}</p>
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if user.is_authenticated %}
+    <div class="add-review">
+      <h3>Add a Review</h3>
+      <form id="review-form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit Review</button>
+      </form>
+    </div>
+  {% else %}
+    <p><a href="{% url 'login' %}">Log in</a> to add a review.</p>
+  {% endif %}
+
+  <footer>
+    &copy; 2024 Online Library. All rights reserved.
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const reviewForm = document.getElementById('review-form');
+        reviewForm.addEventListener('submit', function(event) {
+          event.preventDefault();
+          const formData = new FormData(reviewForm);
+          const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+          
+          fetch('{% url "add_review" object.id %}', {
+            method: 'POST',
+            headers: {
+              'X-CSRFToken': csrfToken,
+            },
+            body: formData,
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.errors) {
+              alert('There was an error submitting your review.');
+              console.log(data.errors);
+            } else {
+              const reviewsContainer = document.querySelector('.reviews');
+              const newReview = document.createElement('div');
+              newReview.classList.add('review');
+              newReview.innerHTML = `
+                <p><strong>${data.username}</strong> (${data.created_at})</p>
+                <p>Rating: ${data.rating}/5</p>
+                <p>${data.comment}</p>
+              `;
+              reviewsContainer.appendChild(newReview);
+              reviewForm.reset();
+            }
+          })
+          .catch(error => console.error('Error:', error));
+    })
+});
+  </script>
+</body>
+</html>

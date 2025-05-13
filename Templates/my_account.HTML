@@ -1,0 +1,98 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Account</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'CSS/my_account.CSS' %}">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <nav class="admin">
+      <p class = "siteName">ReadRover Depot</p>
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'Browes' %}">Browes</a>
+
+      {% if user.is_authenticated %}
+        {%if user.is_superuser%}
+          <a href="{% url 'profile' %}">My Account</a>
+          <a href="{% url 'ava_book' %}">Available Books</a>
+          <a href="{% url 'Add_Book' %}">Add Book</a>
+        {%else%}
+          <a href="{% url 'mylib' %}">My Library</a>
+          <a href="{% url 'profile' %}">My Account</a>
+        {%endif%}
+  {%endif%}
+
+
+
+  </nav>
+  {% if user.is_authenticated %}
+            <a href = "{% url 'profile'%}"><p> Hi {{user.username}}</p></a>
+            <a class="logout-button" href="{% url 'logout' %}">
+                Log out <i class="fas fa-sign-out-alt"></i>
+            </a>
+        {% else %}
+            <a class="login-button" href="{% url 'login' %}">
+                Log in <i class="fas fa-sign-in-alt"></i>
+            </a>
+            <a class="signup-button" href="{% url 'register' %}">
+                Sign up <i class="fas fa-user-plus"></i>
+            </a>
+        {% endif %}
+        <div class = "mes">
+          {% if messages %}
+              {% for message in messages %}
+
+                  <div class="look" role="alert">
+                      {{ message }}
+                  </div>
+
+              {% endfor %}
+          {% endif %}
+      </div>
+  </header>
+  <h1>My Account</h1>
+  
+  <!-- Account Photo -->
+  <div class="account-photo">
+    {% if user.profile.avatar %}
+    
+      <img src="{{ user.profile.avatar.url }}" alt="Avatar">
+    {% else %}
+      <p>No avatar available</p>
+    {% endif %}
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      
+      {{ form.as_p }}
+      <button type="submit">Upload New Avatar</button>
+    </form>
+  </div>
+
+  <!-- Account Information -->
+  <div class="account-info">
+    <h2>Account Information</h2>
+    <p>Email: {{user.email}}</p>
+    <p>first Name: {{user.first_name}}</p>
+    <p>Last Name: {{user.last_name}}</p>
+    <p>Is admin: {{user.is_superuser}}</p>
+    <!-- You can add more account information here -->
+  </div>
+
+  <!-- Additional Features or Actions -->
+  <div class="additional-features">
+    <h2>Additional Features</h2>
+    <!-- Add any additional features or actions relevant to the user's account -->
+    <!-- For example, links to edit profile, change password, etc. -->
+    <ul>
+      <li><a href="{% url 'updata_profile'%}">Edit Profile</a></li>
+      <li><a href="{% url 'update_pass'%}">Change Password</a></li>
+      <!-- Add more links as needed -->
+    </ul>
+  </div>
+</body>
+</html>

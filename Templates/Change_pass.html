@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Password - ReadRover Depot</title>
+    <link rel="stylesheet" href="{% static 'CSS/changePass.css' %}">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header><nav class="admin">
+        <p class = "siteName">ReadRover Depot</p>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'Browes' %}">Browes</a>
+
+        {% if user.is_authenticated %}
+            {%if user.is_superuser%}
+                <a href="{% url 'profile' %}">My Account</a>
+                <a href="{% url 'ava_book' %}">Available Books</a>
+                <a href="{% url 'Add_Book' %}">Add Book</a>
+
+            {%else%}
+                <a href="{% url 'mylib' %}">My Library</a>
+                <a href="{% url 'profile' %}">My Account</a>
+            {%endif%}
+        {%endif%}
+
+        
+    </nav>
+    {% if user.is_authenticated %}
+        <a href = "{% url 'profile'%}"><p> Hi {{user.username}}</p></a>
+        <a class="logout-button" href="{% url 'logout' %}">
+            Log out <i class="fas fa-sign-out-alt"></i>
+        </a>
+    {% else %}
+        <a class="login-button" href="{% url 'login' %}">
+            Log in <i class="fas fa-sign-in-alt"></i>
+        </a>
+        <a class="signup-button" href="{% url 'register' %}">
+            Sign up <i class="fas fa-user-plus"></i>
+        </a>
+    {% endif %}
+</header>
+    <main>
+        {% if messages %}
+            {% for message in messages %}
+
+                <div class="alert" role="alert">
+                {{ message }}
+
+        </div>
+
+            {% endfor %}
+      {% endif %}
+        <div class="Update_AccountBox">
+            <h2 id = "head">Change Password</h2>
+            <form action="#" method="post">
+                {% csrf_token %}
+                <p id = "typ">New Password</p>
+                {{form.new_password1}}
+                <p id = "typ">Confirm New Password</p>
+                {{form.new_password2}}
+                <button type="submit">Update Password</button> 
+            </form>
+        </div>
+    </main>
+    <footer>
+        &copy; 2024 Online Library. All rights reserved.
+    </footer>
+    <script src="D:\project\learning web\Online Library website\phase_2.1\JavaScript\update_profile.js"></script>
+</body>
+</html>

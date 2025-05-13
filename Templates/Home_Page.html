@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReadRover Depot</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/CSS/home_page.css' %}">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <header>
+        <nav class="admin">
+            <p class = "siteName">ReadRover Depot</p>
+            <a href="">Home</a>
+            <a href="{% url 'Browes' %}">Browes</a>
+
+            {% if user.is_authenticated %}
+                {%if user.is_superuser%}
+                    <a href="{% url 'profile' %}">My Account</a>
+                    <a href="{% url 'ava_book' %}">Available Books</a>
+                    <a href="{% url 'Add_Book' %}">Add Book</a>
+                {%else%}
+                    <a href="{% url 'mylib' %}">My Library</a>
+                    <a href="{% url 'profile' %}">My Account</a>
+                {%endif%}
+        {%endif%}
+            <a href="{% url 'owner' %}" class = "owner">Owners</a>
+
+
+        </nav>
+        {% if user.is_authenticated %}
+            <a href = "{% url 'profile'%}"><p> Hi {{user.username}}</p></a>
+            <a class="logout-button" href="{% url 'logout' %}">
+                Log out <i class="fas fa-sign-out-alt"></i>
+            </a>
+        {% else %}
+            <a class="login-button" href="{% url 'login' %}">
+                Log in <i class="fas fa-sign-in-alt"></i>
+            </a>
+            <a class="signup-button" href="{% url 'register' %}">
+                Sign up <i class="fas fa-user-plus"></i>
+            </a>
+        {% endif %}
+    </header>
+
+    <main id="maincontent" role="main" tabindex="-1">
+        <div class="panle">
+            <div class="left-half">
+
+                <div class="text">
+                    <h1>ReadRover Depot</h1>
+                    <p class="f">Open a book, open your mind. Explore the endless worlds within the pages.</p>
+                </div>
+
+            </div>
+
+
+        </div>
+            
+        
+        <div class="book-slide">
+            <h2>Top Selling Books</h2>
+            {% for book in top_selling_books %}
+                {% csrf_token %}
+                <div class="book">
+                    <p>{{ book.title }}</p>
+                    <a href="{% url 'Book-info' my_id=book.id %}" class="book-link">
+                    <img src="{{ book.BookCover.url }}" alt="{{ book.title }}">
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+
+
+        <div class="book-slide">
+            <h2>Newest Books</h2>
+            {% for book in newest_books %}
+            <div class="book">
+                <p>{{ book.title }}</p>
+                <a href="{% url 'Book-info' my_id=book.id %}" class="book-link">
+                    <img src="{{ book.BookCover.url }}" alt="{{ book.title }}">
+                    </a>
+                
+            </div>
+            {% endfor %}
+        </div>
+
+
+        <div class="book-slide">
+            <h2>Recommended Books</h2>
+            {% for book in recommended_books %}
+            <div class="book">
+                <p>{{ book.title }}</p>
+                <a href="{% url 'Book-info' my_id=book.id %}" class="book-link">
+                    <img src="{{ book.BookCover.url }}" alt="{{ book.title }}">
+                    </a>
+                
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+    <footer>
+        &copy; 2024 ReadRover Depot. All rights reserved.
+    </footer>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Information</title>
+  <link rel="stylesheet" href="{% static '/CSS/book_info.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    {% if messages %}
+    {% for message in messages %}
+
+        <div class="alert" role="alert">
+        {{ message }}
+
+        </div>
+
+    {% endfor %}
+{% endif %}
+    <nav class="admin">
+      <p class = "siteName">ReadRover Depot</p>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'Browes' %}">Browes</a>
+
+        {% if user.is_authenticated %}
+          {%if user.is_superuser%}
+            <a href="{% url 'profile' %}">My Account</a>
+            <a href="{% url 'ava_book' %}">Available Books</a>
+            <a href="{% url 'Add_Book' %}">Add Book</a>
+          {%else%}
+            <a href="{% url 'mylib' %}">My Library</a>
+            <a href="{% url 'profile' %}">My Account</a>
+          {%endif%}
+        {%endif%}
+        
+        
+
+    </nav>
+    {% if user.is_authenticated %}
+        <a href = "{% url 'profile'%}"><p> Hi {{user.username}}</p></a>
+        <a class="logout-button" href="{% url 'logout' %}">
+            Log out <i class="fas fa--out-alt"></i>
+        </a>
+    {% else %}
+        <a class="login-button" href="{% url 'login' %}">
+            Log in <i class="fas fa--n-alt"></i>
+        </a>
+        <a class="signup-button" href="{% url 'register' %}">
+            Sign up <i class="fas fa--plus"></i>
+        </a>
+    {% endif %}
+</header>
+  </header>
+
+  <div class="book-info">
+    <div class="cover">
+      <img src= {{object.BookCover.url}} alt="Book Cover">
+    </div>
+    <div class="details">
+      <h2>Title: {{object.title}}</h2>
+      <p>Author: {{object.author}}</p>
+      <p>About: {{object.description}}</p>
+      <p>Price: {{object.price}}
+      <p>Borrowing Price: {{object.BorrowingPrice}}</p>
+      <p id = "yyy">Can Borrow: {%if object.featured%}Yes{%else%}No{%endif%}</p>
+      <div>
+
+    </div>
+        {% if user.is_superuser %}
+        <a href="{% url 'Book-edit' object.id %}">
+          <button type="edit">Edit Book</button>
+      </a>
+      <a href="{% url 'delete_book' object.id %}">
+        <button type="delete">Delete Book</button>
+      </a>
+        {% elif user.is_authenticated %}
+          {%if object.featured %}
+          <div id= "xxx">
+
+              <button type="Borrow" value = "{{object.id}}" id = "add-lib">Borrow</button>
+
+          </div>
+          {%elif object.user == request.user %}
+          <div id = "xxx">
+
+              <button type="Borrow" id = "add-lib2" >Undo Borrow</button>
+
+          </div>
+          {%endif%}  
+        {%else%}
+        <a href="{% url 'login' %}">
+          <button type="Borrow">Login To Borrow</button>
+        </a>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+  <div class="reviews">
+    <h3>Reviews</h3>
+    {% for review in reviews %}
+      <div class="review">
+        <p><strong>{{ review.user.username }}</strong> ({{ review.created_at|date:"M d, Y" }})</p>
+        <p>
+          Rating: 
+          <span class="star-rating">
+            {% for i in "12345" %}
+              <i class="fa-regular fa-star{% if review.rating < forloop.counter %}-o{% endif %}"></i>
+            {% endfor %}
+          </span>
+        </p>
+        <p>{{ review.comment }}</p>
+
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if user.is_authenticated %}
+    <div class="add-review">
+      <h3>Add a Review</h3>
+      <form id="review-form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit Review</button>
+      </form>
+    </div>
+  {% else %}
+    <p><a href="{% url 'login' %}">Log in</a> to add a review.</p>
+  {% endif %}
+  <footer>
+    &copy; 2024 Online Library. All rights reserved.
+  </footer>
+  <script>  
+
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const reviewForm = document.getElementById('review-form');
+  
+      reviewForm.addEventListener('submit', function(event) {
+          event.preventDefault();
+  
+          const formData = new FormData(reviewForm);
+          const xhr = new XMLHttpRequest();
+          const url = '{% url 'add_review' object.id %}'; // Change this to the URL of your add_review view
+          xhr.open('POST', url);
+          xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');
+  
+          xhr.onreadystatechange = function() {
+              if (xhr.readyState === XMLHttpRequest.DONE) {
+                  if (xhr.status === 200) {
+                      // On success, append the new review to the reviews section
+                      const data = JSON.parse(xhr.responseText);
+                      const reviewsContainer = document.querySelector('.reviews');
+                      const newReview = document.createElement('div');
+                      newReview.classList.add('review');
+                      newReview.innerHTML = `
+                          <p><strong>${data.username}</strong> (${data.created_at})</p>
+                          <p>
+                              Rating: 
+                              <span class="star-rating">
+                                  ${Array.from({ length: 5 }, (_, i) => `<i class="fa-regular fa-star${data.rating < i + 1 ? '-o' : ''}"></i>`).join('')}
+                              </span>
+                          </p>
+                          <p>${data.comment}</p>
+                      `;
+                      reviewsContainer.appendChild(newReview);
+  
+                      // Reset the form
+                      reviewForm.reset();
+                  } else {
+                      // Error handling
+                      console.error('Error adding review');
+                  }
+              }
+          };
+  
+          xhr.send(formData);
+      });
+  });
+
+
+
+    $(document).on('click', '#add-lib2', function(e){
+        e.preventDefault()
+        const xhr = new XMLHttpRequest()
+        console.log(e)
+
+        const url = '{% url 'undo_borrow' object.id %}'
+        xhr.open('GET', url, true)
+
+        xhr.send()
+
+        xhr.onreadystatechange = e => {
+        
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            console.log(xhr.responseText)
+            document.getElementById("xxx").innerHTML = `            <a href = "{%url 'Book-info' object.id %}">
+              <button type="Borrow" value = "{{object.id}}" id = "add-lib">Borrow</button>
+            </a>`
+            document.getElementById("yyy").innerHTML = `<p id = "yyy">Can Borrow: Yes</p>`
+            }
+          }
+      });
+    $(document).on('click', '#add-lib', function(e){
+          e.preventDefault()
+          const xhr = new XMLHttpRequest()
+          
+
+          const url = '{% url 'mylib_add' object.id %}'
+          xhr.open('GET', url, true)
+
+          xhr.send()
+
+          xhr.onreadystatechange = e => {
+          
+          if (xhr.readyState == 4 && xhr.status == 200) {
+              console.log(xhr.responseText)
+              document.getElementById("xxx").innerHTML = `            <a href="{% url 'undo_borrow' object.id %}">
+                <button type="Borrow">Undo Borrow</button>
+              </a>`
+              document.getElementById("yyy").innerHTML = `<p id = "yyy">Can Borrow: No</p>`
+            }
+          }
+      });
+  
+
+  </script>
+</body>
+</html>

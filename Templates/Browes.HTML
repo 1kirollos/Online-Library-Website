@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Browse Books</title>
+  <link rel="stylesheet" href="{% static '/CSS/browes.css' %}">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    {% if messages %}
+    {% for message in messages %}
+
+        <div class="alert" role="alert">
+        {{ message }}
+
+        </div>
+
+    {% endfor %}
+{% endif %}
+    <nav class="admin">
+      <p class = "siteName">ReadRover Depot</p>
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'Browes' %}">Browes</a>
+
+      {% if user.is_authenticated %}
+        {%if user.is_superuser%}
+          <a href="{% url 'profile' %}">My Account</a>
+          <a href="{% url 'ava_book' %}">Available Books</a>
+          <a href="{% url 'Add_Book' %}">Add Book</a>
+
+        {%else%}
+          <a href="{% url 'mylib' %}">My Library</a>
+          <a href="{% url 'profile' %}">My Account</a>
+        {%endif%}
+  {%endif%}
+
+  
+
+  </nav>
+  {% if user.is_authenticated %}
+  <a href = "{% url 'profile'%}"><p class = "name"> Hi {{user.username}}</p></a>
+  <a class="logout-button" href="{% url 'logout' %}">
+      Log out <i class="fas fa-sign-out-alt"></i>
+  </a>
+{% else %}
+  <a class="login-button" href="{% url 'login' %}">
+      Log in <i class="fas fa-sign-in-alt"></i>
+  </a>
+  <a class="signup-button" href="{% url 'register' %}">
+      Sign up <i class="fas fa-user-plus"></i>
+  </a>
+{% endif %}
+  </header>
+<!-- Search icon -->
+
+ 
+<!-- Search bar -->
+<form method = "get" action = ".">
+  {% csrf_token %}
+  <div class="container">
+    <div class="search-box">
+      <input type="text" name = 'searched' />
+      <span></span>
+    </div>
+  </div>
+</form>
+
+<div class = "books">
+  
+
+    {% for book in books %}
+        {% csrf_token %}
+          <div class="book">
+            <h2>{{book.title}}</h2>
+            <a href="{% url 'Book-info' my_id=book.id %}" class="book-link">
+              <img src="{{ book.BookCover.url }}" alt="{{ book.title }}">
+              <div class="book-details">
+              <h2>Title: {{book.title}}</h2>
+              <p>Author: {{book.author}}</p>
+              <p>Price: {{book.price}}</p>
+              <p>Borrowing Price: {{book.BorrowingPrice}}</p>
+              {%if book.featured%}
+                <span class="availability">Available</span>
+              {%else%}
+                <span class="not-availability">Not Available</span>
+              {%endif%}
+              </div>
+            </a>
+          </div>
+    {% endfor %}
+
+</div>
+    
+
+
+  <script src="D:\project\learning web\Online Library website\phase_2.1\JavaScript\Browes.js"></script>
+</body>
+</html>
