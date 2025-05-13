@@ -1,0 +1,242 @@
+/* Reset styles */
+* 
+{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Body styles */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #0f034d;
+}
+
+/* Header styles */
+header {
+  position: relative;
+  background-color:   #11083c;
+  color: #fff;
+  bottom: 1px;
+  height: 60px;
+  text-align: center;
+}
+
+header img {
+  position: relative;
+  width: 150px; /* Adjust the width of the logo as needed */
+  height: 100px; /* Automatically adjust the height while maintaining aspect ratio */
+  right: 400px;
+}
+
+/* Navigation styles */
+nav .admin {
+  color: #fff;
+  position: relative;
+  height: 60px;
+  text-decoration: none;
+  margin-right: 20px;
+  margin-top: 70px;
+  padding: 60px;
+}
+
+nav a {
+  color: #fff; /* White text color for links */
+  text-decoration: none;
+  margin: 0 40px;
+  font-size: larger;
+  position: relative;
+}
+
+nav a::after {
+  content: ''; /* Add content for the pseudo-element */
+  position: absolute; /* Position the pseudo-element absolutely */
+  left: 0;
+  bottom: -5px; /* Adjust as needed for the underline position */
+  width: 0; /* Make the line span the width of the anchor tag */
+  height: 2px; /* Set the height of the line */
+  background-color: transparent; /* Initially make the line transparent */
+  transition: width 0.2s ease-out; /* Smooth transition for the line */
+}
+
+nav a:hover::after {
+  background-color: #03fcd3; /* Change the background color on hover */
+  width: 100%; /* Ensure the line spans the full width */
+}
+
+
+
+/* Login and Sign Up button styles */
+.login-button{
+  color: #fff; /* White text color */
+  text-decoration: none;
+  padding: 4px 8px; /* Adjust padding */
+  font-size: 14px; /* Smaller font size */
+  border-radius: 20px; /* Round edges for buttons */
+  background-color: #ff6600; /* Orange button color */
+  transition: background-color 0.3s; /* Smooth transition for color change */
+  position: absolute;
+  top: 20px; /* Adjust distance from top */
+  right: 20px; /* Adjust distance from right */
+}
+.signup-button {
+  color: #fff; /* White text color */
+  text-decoration: none;
+  padding: 4px 8px; /* Adjust padding */
+  font-size: 14px; /* Smaller font size */
+  border-radius: 20px; /* Round edges for buttons */
+  background-color: #ff6600; /* Orange button color */
+  transition: background-color 0.3s; /* Smooth transition for color change */
+  position: absolute;
+  top: 20px; /* Adjust distance from top */
+  right: 80px; /* Adjust distance from right */
+}
+
+.login-button:hover,
+.signup-button:hover {
+  background-color: #e65c00; /* Darker orange on hover */
+}
+
+.login-button:active,
+.signup-button:active {
+  background-color: #cc5200; /* Even darker orange on click */
+}
+
+
+.search input[type="text"] {
+  width: 200px;
+  height: 25px;
+  padding: 8px;
+  font-size: 16px;
+  
+}
+
+.search #searchBar {
+  position: relative;
+  width: 170px;
+}
+
+.search-icon {
+  position: relative;
+  right: 1;
+  bottom: -20px;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 24px;
+  fill: #ffffff;
+  cursor: pointer;
+}
+
+
+/* Filter styles */
+.filter {
+  background-color: #0f034d;
+  padding: 20px;
+  margin-top: 20px;
+  width: 200px; /* Adjust width as needed */
+  height:1050px; 
+  float: left; /* Float filters to the left */
+}
+/* Initially hide the filter content */
+.filter-content {
+
+  transform: translateX(-120%); /* Move content off-screen initially */
+  transition: transform 0.5s; /* Add transition effect */
+}
+
+/* When hovering over the filter, display the filter content */
+.filter:hover .filter-content {
+  transform: translateX(0);
+}
+
+
+.filter h2 {
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.filter div {
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+
+/* Book styles */
+.books {
+  display:flex;
+  position: relative;
+  bottom: 50px;
+  flex-wrap: wrap;
+  justify-content:center;
+  align-items: flex-start;
+  margin-top: 20px; /* Adjust margin as needed */
+  width: auto;
+  height: auto;
+  margin-right: 5px;
+  padding: 20px;
+  background-color: #0f034d;
+}
+
+.book {
+  display: inline-block; /* Change to inline-block to fit the content */
+  overflow: hidden; /* Hide overflowing content */
+  border-radius: 5px;
+  width: 200px;
+  height: auto;
+  margin-right: 20px; 
+  margin-bottom: 20px;
+  
+  transition: transform 0.3s; /* Add transition effect */
+}
+
+.book img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  transition: transform 0.9s; /* Add transition effect */
+}
+
+.book-details {
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+  transform: translateY(100%); /* Move content off-screen initially */
+  transition: transform 0.5s; /* Add transition effect */
+}
+
+/* Reveal additional content on hover */
+.book:hover .book-details {
+  transform: translateY(0); /* Move content into view on hover */
+}
+.book:hover{
+  transform:scale(1.06);
+}
+
+.book h3 {
+  margin-top: 10px;
+}
+
+.book p {
+  margin-bottom: 5px;
+}
+
+.book-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+footer {
+  background-color: #0b042e;
+  color: white;
+  bottom: 0;
+  text-align: center;
+  padding: 10px 0;
+  width: 100%;
+  transition: transform 0.3s ease-in-out; /* Add smooth transition for animation */
+  transform: translateY(100%); /* Initially move footer below viewport */
+}
+
+/* Show the footer when hovered */
+footer:hover {
+  transform: translateY(0); /* Move footer back to its original position */
+}

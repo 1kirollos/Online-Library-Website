@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Edit Books</title>
+    <style>
+        /* Add your CSS styles here for page layout and design */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+        header nav {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .options {
+            flex: 1;
+            margin-right: 20px;
+        }
+        .books {
+            flex: 2;
+        }
+        h1 {
+            text-align: center;
+        }
+        .option {
+            margin-bottom: 10px;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        /* Add your CSS styles here for coherence with browse books page */
+        .search {
+            margin-bottom: 20px;
+        }
+        .filter {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .filter h2 {
+            margin-top: 0;
+        }
+        .book {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+        }
+        .book img {
+            max-width: 100px;
+            margin-right: 10px;
+        }
+        .book-details {
+            flex: 1;
+        }
+        .book-details h3 {
+            margin-top: 0;
+        }
+        .btn-edit,
+        .btn-delete {
+            padding: 8px 16px;
+            margin-right: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-delete {
+            background-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="user">
+            <!-- <nav class="user">
+              <a href="Home_Page.html">Home</a>
+              <a href="My_library.HTML">My Library</a>
+              <a href="Browes.HTML">Browes</a>
+              <a href="my_account.HTML">My Account</a>
+              <a href="Sign UP.html">Sign Up</a>
+              <a href="Login.html">Login</a>
+          </nav> -->
+          <nav class="admin">
+              <a href="Home_Page.html">Home</a>
+              <a href="Browes.HTML">Browes</a>
+              <a href="Manage_books.HTML">Manage Books</a>
+              <a href="my_account.HTML">My Account</a>
+              <a href="Sign_UP.html">Sign Up</a>
+              <a href="Login.html">Login</a>
+          </nav>
+    </header>
+    <h1>Edit Books</h1>
+    <div class="container">
+        <div class="options">
+            <div class="option">
+                <button class="btn">Add New Book</button>
+            </div>
+            <div class="option">
+                <label for="search">Search Book:</label>
+                <input type="text" id="search" name="search" placeholder="Enter book title or author">
+                <button class="btn">Search</button>
+            </div>
+            <div class="filter">
+                <h2>Filter</h2>
+                <!-- Include filters here -->
+            </div>
+        </div>
+        <div class="books">
+            <!-- Display all books here -->
+            <!-- Sample book entry -->
+            <div class="book">
+                <img src="cover.jpg" alt="Book Cover">
+                <div class="book-details">
+                    <h3>Title: Book Title 1</h3>
+                    <p>Author: Author Name 1</p>
+                    <button class="btn-edit">Edit</button>
+                    <button class="btn-delete">Delete</button>
+                </div>
+            </div>
+            <div class="book">
+                <img src="cover.jpg" alt="Book Cover">
+                <div class="book-details">
+                    <h3>Title: Book Title 2</h3>
+                    <p>Author: Author Name 2</p>
+                    <button class="btn-edit">Edit</button>
+                    <button class="btn-delete">Delete</button>
+                </div>
+            </div>
+            <!-- Add more book entries as needed -->
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+/* Add your CSS styling here */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff; /* White background */
+    color: #333; /* Dark text color */
+    padding-bottom: 50px; /* Add padding to accommodate the footer */
+}
+
+header {
+    background-color: #003366; /* Navy blue header background */
+    color: #fff; /* White text color */
+    padding: 20px 0; /* Add padding top and bottom */
+    text-align: center;
+}
+
+.book-info {
+    display: flex;
+    margin: 20px auto; /* Center the book info */
+    max-width: 800px; /* Limit the width of the book info */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+    border-radius: 10px; /* Round edges */
+    overflow: hidden; /* Hide overflow content */
+}
+
+.cover {
+    flex: 1; /* Take up remaining space */
+}
+
+.cover img {
+    display: block; /* Ensure image is block level */
+    width: 100%; /* Fill parent container */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.details {
+    flex: 2; /* Take up twice as much space as the cover */
+    padding: 20px;
+}
+
+h2 {
+    color: #003366; /* Navy blue heading color */
+}
+
+.rating {
+    text-align: center;
+    margin: 20px auto;
+}
+
+.rating h3 {
+    color: #003366; /* Navy blue heading color */
+}
+
+.stars {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.star {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.star:hover,
+.star.active {
+    color: #f0c420;
+}
+
+.reviews {
+    max-width: 800px; /* Limit the width of the reviews */
+    margin: 20px auto;
+}
+
+.review {
+    margin-bottom: 20px; /* Add space between reviews */
+}
+
+.new-review {
+    margin-top: 20px; /* Add space above new review form */
+}
+
+label {
+    display: block; /* Display labels as block */
+    margin-bottom: 5px; /* Add space below labels */
+}
+
+textarea {
+    width: 100%; /* Fill parent container */
+    padding: 10px; /* Add padding to textarea */
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 5px; /* Round edges */
+    box-sizing: border-box; /* Include padding and border in width */
+}
+
+button[type="submit"] {
+    width: 100%; /* Fill parent container */
+    padding: 10px; /* Add padding to button */
+    background-color: #0066cc; /* Navy blue button color */
+    color: #fff; /* White text color */
+    border: none;
+    border-radius: 5px; /* Round edges */
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition for color change */
+}
+
+button[type="submit"]:hover {
+    background-color: #004080; /* Darker navy blue on hover */
+}
+
+/* Footer styles */
+footer {
+    background-color: #003366; /* Navy blue footer background */
+    color: #fff; /* White text color */
+    text-align: center;
+    padding: 10px 0; /* Add padding top and bottom */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}

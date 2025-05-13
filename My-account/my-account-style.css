@@ -1,0 +1,155 @@
+/* Reset styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+/* Header styles */
+header {
+  background-color: #0b042e;
+  padding: 20px;
+  text-align: center;
+}
+
+nav {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 20px;
+  margin-top: 70px;
+}
+
+nav a {
+  color: #fff; /* White text color for links */
+  text-decoration: none;
+  margin: 0 40px;
+  font-size: larger;
+  position: relative;
+}
+
+nav a::after {
+  content: ''; /* Add content for the pseudo-element */
+  position: absolute; /* Position the pseudo-element absolutely */
+  left: 0;
+  bottom: -5px; /* Adjust as needed for the underline position */
+  width: 0; /* Make the line span the width of the anchor tag */
+  height: 2px; /* Set the height of the line */
+  background-color: transparent; /* Initially make the line transparent */
+  transition: width 0.2s ease-out; /* Smooth transition for the line */
+}
+
+nav a:hover::after {
+  background-color: #03fcd3; /* Change the background color on hover */
+  width: 100%; /* Ensure the line spans the full width */
+}
+
+
+
+/* Login and Sign Up button styles */
+.login-button{
+  color: #fff; /* White text color */
+  text-decoration: none;
+  padding: 4px 8px; /* Adjust padding */
+  font-size: 14px; /* Smaller font size */
+  border-radius: 20px; /* Round edges for buttons */
+  background-color: #ff6600; /* Orange button color */
+  transition: background-color 0.3s; /* Smooth transition for color change */
+  position: absolute;
+  top: 20px; /* Adjust distance from top */
+  right: 20px; /* Adjust distance from right */
+}
+.signup-button {
+  color: #fff; /* White text color */
+  text-decoration: none;
+  padding: 4px 8px; /* Adjust padding */
+  font-size: 14px; /* Smaller font size */
+  border-radius: 20px; /* Round edges for buttons */
+  background-color: #ff6600; /* Orange button color */
+  transition: background-color 0.3s; /* Smooth transition for color change */
+  position: absolute;
+  top: 20px; /* Adjust distance from top */
+  right: 80px; /* Adjust distance from right */
+}
+
+.login-button:hover,
+.signup-button:hover {
+  background-color: #e65c00; /* Darker orange on hover */
+}
+
+.login-button:active,
+.signup-button:active {
+  background-color: #cc5200; /* Even darker orange on click */
+}
+
+/* Main styles */
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  margin-right: 1200px;
+}
+
+.account-photo {
+  text-align: center;
+  margin-top: 20px;
+  margin-right: 1200px;
+}
+
+.account-photo img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+
+.account-info {
+  top: 100px;
+  margin-left: 350px;
+  margin-right: 350px;
+  text-align: left;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow effect */
+}   
+
+.account-info h2 {
+  margin-bottom: 10px;
+}
+
+.account-info p {
+  margin-bottom: 5px;
+}
+
+.additional-features {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.additional-features h2 {
+  margin-bottom: 10px;
+}
+
+.additional-features ul {
+  list-style: none;
+}
+
+.additional-features li {
+  margin-bottom: 10px;
+}
+
+.additional-features a {
+  text-decoration: none;
+  color: #007bff;
+  transition: color 0.3s;
+}
+
+.additional-features a:hover {
+  color: #0056b3;
+}

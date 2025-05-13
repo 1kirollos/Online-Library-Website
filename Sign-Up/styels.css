@@ -1,0 +1,75 @@
+/* Add your CSS styling here */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff; /* White background */
+    color: #333; /* Dark text color */
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+.Sign_UpBox {
+    background-color: #f2f2f2; /* Light gray background */
+    padding: 20px;
+    border-radius: 10px; /* Round edges */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+    width: 600px; /* Set width of sign-up box */
+    height: 500px;
+    margin: 0 auto; /* Center horizontally */
+}
+
+h2 {
+    color: #003366; /* Navy blue heading color */
+}
+
+form {
+    margin-top: 20px; /* Add space between heading and form */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 16px;
+    margin-bottom: 10px;
+    border: 1px solid #a8a8a8; /* Gray border */
+    border-radius: 5px; /* Round edges */
+    box-sizing: border-box;
+}
+
+select {
+    appearance: none; /* Remove default select appearance */
+    -webkit-appearance: none; /* For older versions of Safari */
+    -moz-appearance: none; /* For Firefox */
+    background-image: url('data:image/svg+xml;utf8,<svg fill="#003366" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M7 10l5 5 5-5z"/></svg>'); /* Add custom arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #0066cc; /* Navy blue button color */
+    color: #fff; /* White text color */
+    border: none;
+    border-radius: 5px; /* Round edges */
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition for color change */
+}
+
+button[type="submit"]:hover {
+    background-color: #004080; /* Darker navy blue on hover */
+}
+
+footer {
+    background-color: #003366; /* Navy blue background */
+    color: #fff; /* White text color */
+    text-align: center;
+    padding: 10px 0;
+}

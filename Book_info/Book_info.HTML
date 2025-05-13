@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Information</title>
+  <link rel="stylesheet" href="E:\FCAI\YEAR TWO\SECOND SEMESTER\Web\project\styles\book_info.CSS">
+</head>
+<body>
+  <header>
+    <nav class="admin">
+      <a href="Home_Page.html">Home</a>
+      <a href="Browes.HTML">Browes</a>
+      <a href="My_library.HTML">My Library</a>
+      <a href="my_account.HTML">My Account</a>
+  </nav>
+  <a href="Login.html" target="_blank" class="login-button">Login</a>
+  <a href="Sign_UP.html" target="_blank" class="signup-button">Sign Up</a>
+  </header>
+
+  <div class="book-info">
+    <div class="cover">
+      <img src="E:\FCAI\YEAR TWO\SECOND SEMESTER\Web\project\media\cover7.jpeg" alt="Book Cover">
+    </div>
+    <div class="details">
+      <h2>Title: Book Title</h2>
+      <p>Author: Author Name</p>
+      <p>Release Date: January 1, 2024</p>
+      <p>About: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget enim nec nisi ultricies laoreet.</p>
+      <div>
+        <button type="edite">Edite</button>
+        <button type="delete">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="rating">
+    <h3>Your Rating:</h3>
+    <div class="stars" id="starRating">
+      <span class="star" data-value="1">☆</span>
+      <span class="star" data-value="2">☆</span>
+      <span class="star" data-value="3">☆</span>
+      <span class="star" data-value="4">☆</span>
+      <span class="star" data-value="5">☆</span>
+    </div>
+    <input type="hidden" name="rating" id="ratingInput">
+  </div>
+
+  <!-- Within the .reviews div -->
+  <div class="reviews">
+    <h3>Reviews:</h3>
+    <div class="review">
+      <p>Review 1</p>
+    </div>
+    <div class="review">
+      <p>Review 2</p>
+    </div>
+    <div class="review">
+      <p>Review 3</p>
+    </div>
+    <div class="new-review">
+      <h4>Add Your Review:</h4>
+      <form id="reviewForm">
+        <label for="reviewContent">Review:</label><br>
+        <textarea id="reviewContent" name="reviewContent" rows="4" required></textarea><br>
+        <button type="submit">Submit Review</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2024 Online Library. All rights reserved.
+  </footer>
+</body>
+</html>
